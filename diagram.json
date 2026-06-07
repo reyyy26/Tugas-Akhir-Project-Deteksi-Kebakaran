@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "author": "ESP32 Fire Detector Final",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 220, "left": 300, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -60,
+      "left": 220,
+      "attrs": { "pins": "i2c", "address": "0x27" }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": 70,
+      "left": -120,
+      "attrs": { "temperature": "51.1", "humidity": "84" }
+    },
+    {
+      "type": "wokwi-gas-sensor",
+      "id": "mq2",
+      "top": 252.3,
+      "left": -137,
+      "attrs": { "ppm": "150" }
+    },
+    { "type": "wokwi-flame-sensor", "id": "flame1", "top": 430, "left": -140, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btnPage",
+      "top": 520,
+      "left": 620,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btnTest",
+      "top": 620,
+      "left": 620,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledG",
+      "top": 102,
+      "left": 675.8,
+      "attrs": { "color": "green" }
+    },
+    { "type": "wokwi-led", "id": "ledY", "top": 200, "left": 680, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-led", "id": "ledR", "top": 300, "left": 680, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 69.6,
+      "left": 798.6,
+      "attrs": { "volume": "0.5" }
+    }
+  ],
+  "connections": [
+    [ "dht1:GND", "esp:GND.2", "black", [ "v26.3", "h-279", "v364.8", "h624", "v-207" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v-12.1", "h-307.8", "v499.2", "h854.4", "v-288" ] ],
+    [ "dht1:SDA", "esp:D4", "cyan", [ "v16.7", "h517.9", "v134.4" ] ],
+    [ "mq2:VCC", "esp:3V3", "red", [ "h51", "v20.2", "h-316.8", "v307.2", "h729.6", "v-255.1" ] ],
+    [ "flame1:VCC", "esp:3V3", "red", [ "h8.2", "v-51", "h-259.2", "v211.2", "h672", "v-230.4" ] ],
+    [
+      "mq2:GND",
+      "esp:GND.2",
+      "black",
+      [ "h70.2", "v39.5", "h-297.6", "v220.8", "h470.4", "v-192" ]
+    ],
+    [ "mq2:AOUT", "esp:D34", "violet", [ "h60.6", "v1.9" ] ],
+    [ "flame1:GND", "esp:GND.2", "black", [ "h123.4", "v-85.3" ] ],
+    [ "flame1:DOUT", "esp:D35", "orange", [ "h75.4", "v-166.4" ] ],
+    [
+      "lcd1:GND",
+      "esp:GND.2",
+      "black",
+      [ "h-435.2", "v-0.8", "h-364.8", "v412.8", "v211.2", "h777.6", "v-226.2" ]
+    ],
+    [ "lcd1:SCL", "esp:D22", "green", [ "h-22.4", "v181.9", "h240", "v76.8" ] ],
+    [ "lcd1:SDA", "esp:D21", "purple", [ "h-41.6", "v172.2", "h297.6", "v115.2" ] ],
+    [ "lcd1:VCC", "esp:3V3", "blue", [ "h-60.8", "v133.7", "h345.6", "v263.3" ] ],
+    [ "bz1:1", "esp:GND.1", "black", [ "v0" ] ],
+    [ "esp:D25", "bz1:2", "gold", [ "h-45.8", "v-71.3" ] ],
+    [ "esp:D13", "btnPage:1.l", "blue", [ "h-74.6", "v158.9" ] ],
+    [ "btnPage:2.l", "esp:GND.2", "black", [ "h-360.8", "v-4.8" ] ],
+    [ "esp:D32", "btnTest:1.l", "#8f4814", [ "h-141.8", "v341.4", "h456.8" ] ],
+    [ "btnTest:2.l", "esp:GND.2", "black", [ "h-399.2", "v0.8" ] ],
+    [ "ledG:C", "esp:GND.1", "black", [ "h-32.6", "v227" ] ],
+    [ "ledG:A", "esp:D26", "limegreen", [ "v30.8", "h-465", "v67.2" ] ],
+    [ "ledY:C", "esp:GND.1", "black", [ "h-51.8", "v84.4", "h-192", "v42.6" ] ],
+    [ "ledR:C", "esp:GND.1", "black", [ "v13.2", "h-224.6", "v0" ] ],
+    [ "ledY:A", "esp:D27", "yellow", [ "v36.4", "h-215.4", "v153.6", "h-240", "v-86.4" ] ],
+    [ "ledR:A", "esp:D14", "violet", [ "v109.2", "h-426.6", "v-105.6" ] ]
+  ],
+  "dependencies": {}
+}
