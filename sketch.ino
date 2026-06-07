@@ -19,17 +19,13 @@
 #define LCD_SCL         22
 
 // ===================== MQ-2 CONFIG =====================
-// Skala mengikuti slider Wokwi: 0.1 s/d 100000
 #define MQ2_MIN_PPM     0.1f
 #define MQ2_MAX_PPM     100000.0f
 
 // Kalibrasi:
-// 2.0 = nilai LCD jadi setengah dari hasil mapping awal
-// 1.0 = tanpa koreksi
 #define MQ2_CAL_FACTOR  136.0f
 
 // ===================== FLAME LOGIC =====================
-// 1 = aktif LOW, 0 = aktif HIGH
 #define FLAME_ACTIVE_LOW 1
 
 // ===================== THRESHOLDS =====================
@@ -136,8 +132,6 @@ void printPageIndicator(uint8_t page) {
   lcd.print(TOTAL_PAGES);
 }
 
-// MQ2: baca ADC lalu dipetakan ke skala 0.1 .. 100000
-// lalu dikalibrasi dengan MQ2_CAL_FACTOR.
 float rawToPpm(int raw) {
   raw = constrain(raw, 0, 4095);
 
